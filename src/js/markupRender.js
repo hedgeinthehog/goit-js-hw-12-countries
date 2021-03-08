@@ -10,8 +10,7 @@ function renderSearchResults(countries, containerRef) {
 	if (countriesCount > 10) {
 		error({
 			text: 'Too many matches founs. Please enter a more specific query',
-		}
-	);
+		});
 		return;
 	}
 

@@ -1,16 +1,12 @@
 import countryInfoTpl from '../templates/info-about-country.hbs';
 import countryListTpl from '../templates/list-of-countries.hbs';
-import '@pnotify/core/dist/BrightTheme.css';
-import { error } from '@pnotify/core';
-
+import createErrorNotification from './notification';
 
 function renderSearchResults(countries, containerRef) {
 	const countriesCount = countries.length;
 
 	if (countriesCount > 10) {
-		error({
-			text: 'Too many matches founs. Please enter a more specific query',
-		});
+		createErrorNotification('Too many matches founs. Please enter a more specific query');
 		return;
 	}
 

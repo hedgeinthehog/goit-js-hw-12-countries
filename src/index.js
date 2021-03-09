@@ -2,8 +2,7 @@ import './styles.css';
 import fetchCountries from './js/fetchCountries';
 import renderSearchResults from './js/markupRender';
 import debounce from 'lodash.debounce';
-import '@pnotify/core/dist/BrightTheme.css';
-import { error } from '@pnotify/core';
+import createErrorNotification from './js/notification';
 
 const infoContainerRef = document.querySelector('.js-countries-container');
 const searchField = document.querySelector('#searchQuery');
@@ -24,10 +23,6 @@ function searchCountry(searchQuery) {
 	fetchCountries(searchQuery)
 		.then(countriesList => {
 		  renderSearchResults(countriesList, infoContainerRef);
-	  })
-	  .catch(err => {
-		  error({
-		  	text: 'No such country in database',
-		  })
-	  })
+	    })
+	  .catch(err => createErrorNotification('No such country in database'))
 }
